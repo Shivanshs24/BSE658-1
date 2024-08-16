@@ -1,0 +1,3 @@
+"0","select(covid_data, -Negative)"
+"2","Error in select(covid_data, -Negative) : could not find function ""select""
+"
