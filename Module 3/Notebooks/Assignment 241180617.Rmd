@@ -1,0 +1,114 @@
+---
+title: 'Descriptive Statistics: Central and Variability measures'
+output:
+  pdf_document: default
+  html_notebook: default
+---
+```{r warning=FALSE}
+# Loading the packages
+library(tidyverse)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+```
+
+```{r}
+#Initial packages
+install.packages("lsr")
+```
+```{r}
+#Change the path according to your PC
+path = "C:/Users/shiva/Documents/GitHub/BSE658-1/Module 3/Notebooks"
+fileN ="anscombesquarte.Rdata"
+file_path = paste(path,fileN, sep = "")
+load("anscombesquartet.Rdata")
+library(lsr)
+who()
+```
+```{r}
+print(anscombe)
+```
+
+```{r}
+hist(X1)
+```
+
+```{r}
+install.packages("psych")
+library(psych)
+#Try finding skewness of AnsCombe here
+```
+```{r}
+skew(Y1)
+```
+
+
+```{r}
+mean(X1)
+mean(X1[1:5])
+```
+```{r}
+A <- c(X1,X2,X3,X4,Y1)
+sum(A)
+length(A)
+sum(A)/length(A)
+median(A)
+var(A)
+sd(A)
+IQR(A)
+```
+```{r}
+IQR(X2)
+```
+```{r}
+B <- c(X4)
+mean(x = B, trim = .2)
+median(dataset)
+#Try calculating 5% trimmed mean for above dataset
+```
+```{r}
+sort(aes(X4))
+mode = X4
+mode
+```
+
+```{r}
+#Find range of anscombe here
+range(X1)
+```
+
+```{r}
+#Use the functions quantile(x = afl.margins, prob = 0.2) for 20% quantile and IQR() 
+quantile(x = Y2, prob = 0.5)
+```
+
+```{r}
+#Use var() for finding variance of afl.margins
+var(Y4)
+```
+
+```{r}
+#Find out Std dev. here
+sd(X3)
+```
+```{r}
+#Check out what summary() does for afl.margins
+summary(Y1)
+```
+```{r}
+describe(X3)
+```
+```{r}
+ggplot(anscombe_data, mapping=aes(x= factor(Period), y=Count))  + geom_boxplot()
+```
+
+```{r}
+blowouts <-Y3 <7
+blowouts
+```
+```{r}
+summary (object = blowouts)
+```
+#Inferences 
+Anscombesquartet as data was taken in the given sets of data
+

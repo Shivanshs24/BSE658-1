@@ -1,0 +1,203 @@
+---
+title: 'Descriptive Statistics: Scaling and Correlations'
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+
+```{r}
+#Try it out yourself
+#Define a vector with Grumpiness scores of you and your friends and find the z score for your self
+X = 50                        
+z = (X - mean(X)) / sd(X)
+```
+
+
+```{r}
+setwd
+
+
+("D:/Games/parenthood.Rdata")
+
+#Let's load some data
+load( "parenthood.Rdata" )
+
+```
+
+
+```{r}
+#Let's also take a graphical look at the data 
+hist(parenthood$dan.sleep)
+hist(parenthood$dan.grump)
+hist(parenthood$baby.sleep)
+#Try plotting for the other 2 variables
+
+```
+```{r}
+install.packages("car")
+install.packages("Rcpp")
+```
+```{r}
+library(car)
+scatterplot( dan.grump ~ dan.sleep, data = parenthood, regLine = FALSE, smooth= FALSE)
+scatterplot
+```
+
+```{r}
+#Plot a scatter plot for baby.sleep and dan.grump variables
+scatterplot(baby.sleep ~ dan.grump , data = parenthood)
+```
+
+
+
+```{r}
+#Plot baby sleep and dan sleep here
+scatterplot(baby.sleep ~ dan.sleep , data= parenthood)
+```
+
+
+
+
+
+```{r}
+cor(x = parenthood$dan.sleep, y = parenthood$dan.grump)
+cor(parenthood)
+
+#Try giving the entire dataframe 'parenthood' as input in cor()
+```
+
+
+```{r}
+describe(parenthood)
+```
+```{r}
+describe.by(parenthood)
+```
+ 
+
+ 
+```{r}
+load( "anscombesquartet.Rdata" )
+cor( X1, Y1 )
+cor( X2, Y2 )
+cor (X3, Y3)
+cor (X4, Y4)
+```
+
+
+
+```{r}
+scatterplot(X1~Y1 , data = Anscombe)
+```
+
+
+```{r}
+setwd("D:/Games/effort.Rdata")
+load( "effort.Rdata" )
+effort
+cor( effort$hours, effort$grade )
+```
+
+
+```{r}
+scatterplot(effort$hours, effort$grade, regLine = TRUE, smooth = FALSE)
+cor(effort )
+```
+
+
+```{r}
+hours.rank <- rank( effort$hours )   # rank students by hours worked 
+grade.rank <- rank( effort$grade )   # rank students by grade received
+
+#Now try cor() function for these
+cor( hours.rank, grade.rank )
+```
+
+
+```{r}
+#Execute this and compare with the correlation coefficient we got above
+cor( effort$hours, effort$grade, method = "spearman")
+
+```
+
+
+
+```{r}
+load( "parenthood2.Rdata" )
+print( parenthood2 )
+
+#Check how many missing values are there for each variable - compare the values in 'n' with the number of days.
+```
+
+
+```{r}
+cor(parenthood2)
+```
+
+
+
+```{r}
+cor(parenthood2, use = "complete.obs")
+cor(parenthood2, use = "pairwise.complete.obs")
+```
+
+
+```{r}
+#Try correlate() for parenthood2 here
+cor(parenthood2)
+```
+```{r}
+install.packages("ggcorrplot")
+```
+```{r}
+library(ggcorrplot)
+```
+```{r}
+data(mtcars)
+corr <- round(cor(mtcars), 1)
+head(corr[, 1:6])
+```
+```{r}
+p.mat <- cor_pmat(mtcars)
+head(p.mat[, 1:4])
+```
+
+```{r}
+ggcorrplot(corr, method= c("square"),ggtheme=ggplot2::theme_light())
+```
+```{r}
+ggcorrplot(corr, method = "circle")
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE, outline.col = "blue")
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE, type = "lower",
+     outline.col = "black")
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE, type = "upper",
+     outline.col = "white")
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE, type = "lower",
+   outline.col = "white",
+   ggtheme = ggplot2::theme_gray,
+   colors = c("#3D9EE7", "white", "#E46726"))
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE, type = "lower",
+   lab = TRUE)
+```
+```{r}
+ggcorrplot(corr, hc.order = TRUE,
+    type = "lower", p.mat = p.mat)
+```
+```{r}
+ggcorrplot(corr, p.mat = p.mat, hc.order = TRUE,
+    type = "lower", insig = "blank")
+```
+
+
